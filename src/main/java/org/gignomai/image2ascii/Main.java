@@ -30,17 +30,17 @@ public class Main {
     }
     private static char getPixelDarknessAsAsciiChar(int pixel) {
         char[] map = " .,:;ox%#@".toCharArray();
+        // char[] map = "@#%xo;:,. ".toCharArray();
 
         int red = (pixel >> 16) & 0xff;
         int green = (pixel >> 8) & 0xff;
         int blue = (pixel) & 0xff;
 
-        int index = ((red + green + blue) / 3) / 25;
+        int pixelValue = (red + green + blue) / 3;
 
-        if (index < 0) index = 0;
-        if (index > 9) index = 9;
+        Double mapIndexPixelValue = (pixelValue - 1) / 25.5d;
 
-        return map[index];
+        return map[mapIndexPixelValue.intValue()];
     }
 
 }
